@@ -15,7 +15,7 @@ import {
   formatVideoCaption,
   formatVideoDuration,
 } from '@carbon/ibmdotcom-utilities/es/utilities/formatVideoCaption/formatVideoCaption.js';
-import DDSCard from '../card/card';
+import DDSCardLink from '../card-link/card-link';
 import '../card/card-heading';
 import './card-cta-image';
 import CTAMixin from '../../component-mixins/cta/cta';
@@ -34,7 +34,7 @@ const { stablePrefix: ddsPrefix } = ddsSettings;
  * @element dds-card-cta
  */
 @customElement(`${ddsPrefix}-card-cta`)
-class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCard)) {
+class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCardLink)) {
   protected _renderHeading() {
     const { ctaType, videoName, formatVideoCaption: formatVideoCaptionInEffect } = this;
     if (ctaType !== CTA_TYPE.VIDEO) {

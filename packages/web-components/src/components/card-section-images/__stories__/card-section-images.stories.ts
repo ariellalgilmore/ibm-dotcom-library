@@ -13,6 +13,7 @@ import '../../content-section/content-section';
 import '../../content-section/content-section-heading';
 import '../../card-group/card-group';
 import '../../card-group/card-group-item';
+import '../../cta/card-cta-footer';
 import '../card-section-images';
 import ArrowRight20 from 'carbon-web-components/es/icons/arrow--right/20';
 import { html } from 'lit-element';
@@ -26,9 +27,9 @@ const cardGroupItemWithImages = html`
     <dds-image slot="image" alt="Image alt text" default-src="${imgLg4x3}"> </dds-image>
     <dds-card-eyebrow>Topic</dds-card-eyebrow>
     <dds-card-heading>Natural Language Processing.</dds-card-heading>
-    <dds-card-footer slot="footer">
+    <dds-card-cta-footer slot="footer">
       ${ArrowRight20({ slot: 'icon' })}
-    </dds-card-footer>
+    </dds-card-cta-footer>
   </dds-card-group-item>
 `;
 

@@ -15,6 +15,7 @@
 @mixin card {
   .#{$prefix}--card,
   :host(#{$dds-prefix}-card),
+  :host(#{$dds-prefix}-card-link),
   :host(#{$dds-prefix}-link-list-item-card),
   :host(#{$dds-prefix}-card-group-item) .#{$prefix}--card,
   :host(#{$dds-prefix}-card-cta),
@@ -103,11 +104,14 @@
       }
     }
 
+    :host(#{$dds-prefix}-card),
     .#{$prefix}--card.#{$prefix}--tile {
       padding: 0;
     }
   }
 
+  :host(#{$dds-prefix}-card-footer),
+  :host(#{$dds-prefix}-card-cta-footer),
   :host(#{$dds-prefix}-card-cta),
   :host(#{$dds-prefix}-card-link) {
     outline: none;
@@ -140,15 +144,21 @@
     color: $disabled-02;
   }
 
-  .#{$prefix}--card .#{$prefix}--card__footer,
-  :host(#{$dds-prefix}-card-footer),
   :host(#{$dds-prefix}-card-cta-footer),
-  :host(#{$dds-prefix}-card-in-card-footer),
-  :host(#{$dds-prefix}-feature-card-footer),
-  :host(#{$dds-prefix}-feature-cta-footer) {
+  :host(#{$dds-prefix}-card-footer) {
+    margin-top: auto;
+  }
+
+  .#{$prefix}--card .#{$prefix}--card__footer,
+  :host(#{$dds-prefix}-card-footer) a,
+  :host(#{$dds-prefix}-card-cta-footer) a,
+  :host(#{$dds-prefix}-card-in-card-footer) a,
+  :host(#{$dds-prefix}-feature-card-footer) a,
+  :host(#{$dds-prefix}-feature-cta-footer) a {
     /* Moves the footer down to the bottom in the card */
     margin-top: auto;
     text-decoration: none;
+    display: flex;
 
     &:focus {
       outline: none;

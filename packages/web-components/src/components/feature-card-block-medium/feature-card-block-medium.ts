@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { customElement, html } from 'lit-element';
+import { customElement, html, query } from 'lit-element';
 import ddsSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings.js';
 import settings from 'carbon-components/es/globals/js/settings';
 import DDSFeatureCard from '../feature-card/feature-card';
@@ -38,6 +38,9 @@ class DDSFeatureCardBlockMedium extends DDSFeatureCard {
       <slot @slotchange="${this._handleSlotChange}"></slot>
     `;
   }
+
+  @query(`div:not(.${prefix}--feature-card)`)
+  protected _linkNode?: HTMLDivElement | HTMLParagraphElement;
 
   render() {
     return html`

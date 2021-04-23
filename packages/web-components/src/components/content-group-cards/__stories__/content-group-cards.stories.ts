@@ -14,6 +14,7 @@ import textNullable from '../../../../.storybook/knob-text-nullable';
 import '../content-group-cards';
 import '../content-group-cards-item';
 import '../../card/card-heading';
+import '../../card/card-footer';
 import '../../content-group/content-group-copy';
 import '../../content-group/content-group-heading';
 

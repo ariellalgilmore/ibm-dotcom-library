@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2020
+ * Copyright IBM Corp. 2020, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -48,6 +48,27 @@ class DDSCardCTAFooter extends VideoCTAMixin(CTAMixin(DDSCardFooter)) {
     return html`
       <span class="${prefix}--card__cta__copy"><slot @slotchange="${this._handleSlotChange}"></slot>${caption}</span>
     `;
+  }
+
+  protected _getDefaultLabel() {
+    switch (this.ctaType) {
+      case 'download':
+        return ' - This link downloads a file';
+      case 'external':
+        return ' - This link opens in a new tab';
+      case 'video':
+        return ' - This link plays a video';
+      default:
+        return '';
+    }
+  }
+
+  updated() {
+    if (!this._hasCopy) {
+      this.shadowRoot?.querySelector(`a`)?.setAttribute('aria-label', this.altAriaLabel + this._getDefaultLabel());
+    } else {
+      this.shadowRoot?.querySelector(`a`)?.removeAttribute('aria-label');
+    }
   }
 
   /**

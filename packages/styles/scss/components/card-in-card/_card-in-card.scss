@@ -19,8 +19,8 @@
     height: auto;
     width: 100%;
 
-    &:focus {
-      outline: none;
+    .#{$prefix}--card:focus-within {
+      z-index: 0;
 
       ::slotted([slot='image']),
       #{$dds-prefix}-card-in-card-image,

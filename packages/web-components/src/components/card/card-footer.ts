@@ -88,6 +88,9 @@ class DDSCardFooter extends DDSLinkWithIcon {
   @property({ reflect: true })
   slot = 'footer';
 
+  // @query('a')
+  // protected _linkNode?: HTMLAnchorElement | HTMLParagraphElement;
+
   updated() {
     if (!this._hasCopy) {
       this.shadowRoot?.querySelector(`a`)?.setAttribute('aria-label', this.altAriaLabel ? this.altAriaLabel : '');

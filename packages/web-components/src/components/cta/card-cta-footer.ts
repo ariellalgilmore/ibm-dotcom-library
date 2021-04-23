@@ -63,11 +63,21 @@ class DDSCardCTAFooter extends VideoCTAMixin(CTAMixin(DDSCardFooter)) {
     }
   }
 
+  // @query('a')
+  // protected _realLinkNode?: HTMLAnchorElement | HTMLParagraphElement;
+
   updated() {
+    console.log(this._linkNode);
+    // this._linkNode = this.shadowRoot.querySelector('a')
     if (!this._hasCopy) {
       this.shadowRoot?.querySelector(`a`)?.setAttribute('aria-label', this.altAriaLabel + this._getDefaultLabel());
     } else {
       this.shadowRoot?.querySelector(`a`)?.removeAttribute('aria-label');
+    }
+    if (this.ctaType === 'external') {
+      this.shadowRoot?.querySelector(`a`)?.setAttribute('target', '_blank');
+    } else {
+      this.shadowRoot?.querySelector(`a`)?.removeAttribute('target');
     }
   }
 

@@ -99,6 +99,9 @@ class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCardLink)) {
   @property({ attribute: 'video-thumbnail-url' })
   videoThumbnailUrl?: string;
 
+  // @query('dds-card-cta-footer.shadowRoot.querySelector('a')')
+  // protected _linkNode?: HTMLAnchorElement | HTMLParagraphElement;
+
   updated(changedProperties) {
     super.updated(changedProperties);
     const { selectorFooter } = this.constructor as typeof DDSCardCTA;
@@ -111,6 +114,7 @@ class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCardLink)) {
       const {
         ctaType,
         videoDuration,
+        videoName,
         formatVideoCaption: formatVideoCaptionInEffect,
         formatVideoDuration: formatVideoDurationInEffect,
       } = this;
@@ -123,6 +127,9 @@ class DDSCardCTA extends VideoCTAMixin(CTAMixin(DDSCardLink)) {
         }
         if (formatVideoDurationInEffect) {
           (footer as DDSCardCTAFooter).formatVideoDuration = formatVideoDurationInEffect;
+        }
+        if (ctaType === 'video') {
+          (footer as DDSCardCTAFooter).altAriaLabel = videoName;
         }
       }
     }

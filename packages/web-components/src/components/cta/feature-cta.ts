@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2020
+ * Copyright IBM Corp. 2020, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -99,11 +99,19 @@ class DDSFeatureCTA extends VideoCTAMixin(CTAMixin(DDSFeatureCard)) {
   updated(changedProperties) {
     super.updated(changedProperties);
     const { selectorFooter } = this.constructor as typeof DDSFeatureCTA;
-    if (changedProperties.has('ctaType')) {
-      const { ctaType } = this;
+    if (
+      changedProperties.has('ctaType') ||
+      changedProperties.has('formatCaption') ||
+      changedProperties.has('formatDuration') ||
+      changedProperties.has('videoDuration')
+    ) {
+      const { ctaType, videoName } = this;
       const footer = this.querySelector(selectorFooter);
       if (footer) {
         (footer as DDSFeatureCTAFooter).ctaType = ctaType;
+        if (ctaType === 'video') {
+          (footer as DDSFeatureCTAFooter).altAriaLabel = videoName;
+        }
       }
     }
   }

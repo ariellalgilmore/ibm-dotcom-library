@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2020
+ * Copyright IBM Corp. 2020, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -31,6 +31,15 @@ export const icons = {
   [CTA_TYPE.JUMP]: ArrowDown20,
   [CTA_TYPE.VIDEO]: PlayOutline20,
 };
+
+// /**
+//  * Icons to use, keyed by CTA type.
+//  */
+// export const ariaLabels = {
+//   [CTA_TYPE.DOWNLOAD]: ' - This link downloads a file',
+//   [CTA_TYPE.EXTERNAL]: ' - This link opens in a new tab',
+//   [CTA_TYPE.VIDEO]: ' - This link plays a video',
+// };
 
 /**
  * @param Base The base class.
@@ -110,14 +119,18 @@ const CTAMixin = <T extends Constructor<HTMLElement>>(Base: T) => {
       }
       // TODO: See why `linkNode` can possibly be `null`
       if (linkNode) {
+        console.log('LINKNODE', linkNode);
+        // const realLinkNode = linkNode.getRootNode().host.querySelector("dds-card-cta-footer").shadowRoot.querySelector('a');
         if (changedProperties.has('ctaType') || changedProperties.has('href')) {
           const { href } = this;
           const hrefValue = ctaType !== CTA_TYPE.VIDEO ? href : '#';
           // If this CTA is of video, uses the link as the action button
           if (hrefValue == null) {
             linkNode.removeAttribute('href');
+            // realLinkNode.removeAttribute('href');
           } else {
             linkNode.setAttribute('href', hrefValue);
+            // realLinkNode.setAttribute('href', hrefValue);
           }
         }
         if (changedProperties.has('ctaType') || changedProperties.has('target')) {
@@ -126,10 +139,15 @@ const CTAMixin = <T extends Constructor<HTMLElement>>(Base: T) => {
           const targetInEffect = target || ctaType !== CTA_TYPE.EXTERNAL ? undefined : '_blank';
           if (!targetInEffect) {
             linkNode.removeAttribute('target');
+            // realLinkNode.removeAttribute('target');
           } else {
             linkNode.setAttribute('target', targetInEffect);
+            // realLinkNode.removeAttribute('target');
           }
         }
+        // if(realLinkNode.hasAttribute('aria-label')){
+        //   realLinkNode.setAttribute('aria-label', realLinkNode.hasAttribute('aria-label') + ariaLabels[ctaType])
+        // }
       }
     }
   }

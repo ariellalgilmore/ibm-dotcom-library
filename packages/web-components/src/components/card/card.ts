@@ -183,7 +183,12 @@ class DDSCard extends StableSelectorMixin(BXLink) {
   @query('div')
   protected _linkNode?: HTMLDivElement | HTMLParagraphElement;
 
+  // @query('slot[name=footer]')
+  // protected _test?: HTMLElement;
+
   updated(changedProperties) {
+    // this._linkNode = this.querySelector('dds-card-cta-footer').shadowRoot.querySelector('a');
+    console.log('CARD', this._linkNode);
     super.updated(changedProperties);
     const { colorScheme, href, _linkNode: linkNode } = this;
     if (changedProperties.has('colorScheme') || changedProperties.has('href')) {
